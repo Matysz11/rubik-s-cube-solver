@@ -1,5 +1,8 @@
 extends Node3D
 
+var prim_move = false
+var is_rotating := false
+
 @onready var center1 = $center1
 @onready var center2 = $center2
 @onready var center3 = $center3
@@ -114,3 +117,103 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
+
+func _input(event):
+	if event.is_action_pressed("prim"):
+		prim_move = true
+		return
+	if event.is_action_released("prim"):
+		prim_move = false
+		return
+	if event.is_action_pressed("front"):
+		rotate_front()
+	if event.is_action_pressed("behind"):
+		rotate_back()
+	if event.is_action_pressed("left"):
+		rotate_left()
+	if event.is_action_pressed("right"):
+		rotate_right()
+	if event.is_action_pressed("up"):
+		rotate_up()
+	if event.is_action_pressed("down"):
+		rotate_down()
+
+func rotate_front():
+	if prim_move:
+		rotate_layer_z(1, -90)
+	else:
+		rotate_layer_z(1, 90)
+func rotate_back():
+	if prim_move:
+		rotate_layer_z(-1, 90)
+	else:
+		rotate_layer_z(-1, -90)
+func rotate_right():
+	if prim_move:
+		rotate_layer_x(1, -90)
+	else:
+		rotate_layer_x(1, 90)
+func rotate_left():
+	if prim_move:
+		rotate_layer_x(-1, 90)
+	else:
+		rotate_layer_x(-1, -90)
+func rotate_up():
+	if prim_move:
+		rotate_layer_y(1, -90)
+	else:
+		rotate_layer_y(1, 90)
+func rotate_down():
+	if prim_move:
+		rotate_layer_y(-1, 90)
+	else:
+		rotate_layer_y(-1, -90)
+
+func rotate_layer_x(xv: int, angle: float):
+	_rotate_layer(Vector3i(xv, 0, 0), Vector3(1,0,0), angle)
+func rotate_layer_y(yv: int, angle: float):
+	_rotate_layer(Vector3i(0, yv, 0), Vector3(0,1,0), angle)
+func rotate_layer_z(zv: int, angle: float):
+	_rotate_layer(Vector3i(0, 0, zv), Vector3(0,0,1), angle)
+
+func _rotate_layer(axis_value: Vector3i, axis: Vector3, angle: float):
+	if is_rotating:
+		return
+	is_rotating = true
+	var pivot = Node3D.new()
+	add_child(pivot)
+	var cube_size = 0.6
+	pivot.global_position = Vector3(axis_value) * cube_size
+	pivot.rotation_degrees = Vector3.ZERO
+	var affected = []
+	for c in cubies:
+		if (
+			(axis.x != 0 and c.grid_pos.x == axis_value.x) or
+			(axis.y != 0 and c.grid_pos.y == axis_value.y) or
+			(axis.z != 0 and c.grid_pos.z == axis_value.z)
+		):
+			affected.append(c)
+	for c in affected:
+		var t = c.global_transform
+		c.reparent(pivot)
+		c.global_transform = t
+	var tween = create_tween()
+	tween.tween_property(
+		pivot,
+		"rotation_degrees",
+		pivot.rotation_degrees + axis * angle,
+		0.25
+	)
+	await tween.finished
+	for c in affected:
+		var t = c.global_transform
+		c.reparent(self)
+		c.global_transform = t
+		c.grid_pos = Vector3i(
+			round(c.global_position.x / cube_size),
+			round(c.global_position.y / cube_size),
+			round(c.global_position.z / cube_size)
+		)
+		c.position = Vector3(c.grid_pos) * cube_size
+	pivot.queue_free()
+	is_rotating = false
