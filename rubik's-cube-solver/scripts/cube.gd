@@ -202,7 +202,7 @@ func _rotate_layer(axis_value: Vector3i, axis: Vector3, angle: float):
 		pivot,
 		"rotation_degrees",
 		pivot.rotation_degrees + axis * angle,
-		0.25
+		0.15
 	)
 	await tween.finished
 	for c in affected:
@@ -218,3 +218,18 @@ func _rotate_layer(axis_value: Vector3i, axis: Vector3, angle: float):
 	pivot.queue_free()
 	is_rotating = false
 	
+func bot_move(move):
+	var site = move[0]
+	prim_move = move[1]
+	if site == "f":
+		rotate_front()
+	if site == "b":
+		rotate_back()
+	if site == "l":
+		rotate_left()
+	if site == "r":
+		rotate_right()
+	if site == "u":
+		rotate_up()
+	if site == "d":
+		rotate_down()

@@ -1,7 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://db4qf8wkxuknl"]
+[gd_scene load_steps=5 format=3 uid="uid://dyu60ggqte6un"]
 
-[ext_resource type="Material" uid="uid://dlnql6sng0dla" path="res://material.material" id="1_qiifj"]
-[ext_resource type="Script" uid="uid://bi5t044q372qt" path="res://corner.gd" id="1_u2gga"]
+[ext_resource type="Script" uid="uid://bi56ecng5q18d" path="res://scripts/edge.gd" id="1_fxce1"]
+[ext_resource type="Material" uid="uid://dlnql6sng0dla" path="res://assets/material.material" id="1_wt4uh"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_vx3r0"]
 
@@ -9,9 +9,9 @@
 
 [node name="MeshInstance3D" type="MeshInstance3D"]
 transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0, 0, 0)
-material_override = ExtResource("1_qiifj")
+material_override = ExtResource("1_wt4uh")
 mesh = SubResource("BoxMesh_vx3r0")
-script = ExtResource("1_u2gga")
+script = ExtResource("1_fxce1")
 
 [node name="sticker1" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.85, 0, 0, 0, 0.049999997, 0, 0, 0, 0.85, 0, 0.525, 0)
@@ -20,10 +20,5 @@ skeleton = NodePath("../..")
 
 [node name="sticker2" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.05, 0, 0, 0, 0.85, 0, 0, 0, 0.85, 0.525, 0, 0)
-mesh = SubResource("BoxMesh_u2gga")
-skeleton = NodePath("../..")
-
-[node name="sticker3" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.85, 0, 0, 0, 0.85, 0, 0, 0, 0.05, 0, 0, 0.525)
 mesh = SubResource("BoxMesh_u2gga")
 skeleton = NodePath("../..")
