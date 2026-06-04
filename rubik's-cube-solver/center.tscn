@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://dhckwokwkdoyl"]
+[gd_scene load_steps=5 format=3 uid="uid://dhckwokwkdoyl"]
 
 [ext_resource type="Script" uid="uid://d4byqbf5m6oqu" path="res://center.gd" id="1_3f4wk"]
+[ext_resource type="Material" uid="uid://dlnql6sng0dla" path="res://material.material" id="1_hwhyk"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_vx3r0"]
 
@@ -8,6 +9,7 @@
 
 [node name="MeshInstance3D" type="MeshInstance3D"]
 transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0, 0, 0)
+material_override = ExtResource("1_hwhyk")
 mesh = SubResource("BoxMesh_vx3r0")
 script = ExtResource("1_3f4wk")
 

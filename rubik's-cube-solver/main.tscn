@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://cvy2m8x2tacom"]
+[gd_scene load_steps=10 format=3 uid="uid://cvy2m8x2tacom"]
 
 [ext_resource type="Script" uid="uid://d3qcgpjr2n1fd" path="res://cube.gd" id="1_1bvp3"]
 [ext_resource type="PackedScene" uid="uid://dhckwokwkdoyl" path="res://center.tscn" id="1_h2yge"]
@@ -6,6 +6,21 @@
 [ext_resource type="PackedScene" uid="uid://dyu60ggqte6un" path="res://edge.tscn" id="2_1bvp3"]
 [ext_resource type="Script" uid="uid://bdmnvcm2egbid" path="res://camera_pivot.gd" id="5_lquwl"]
 [ext_resource type="Script" uid="uid://dhgm5ca6yhk1y" path="res://camera_3d.gd" id="6_7mycd"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_7mycd"]
+sky_top_color = Color(0.16078432, 0.4, 0.65882355, 1)
+sky_horizon_color = Color(0.5450824, 0.553472, 0.57025915, 1)
+sky_curve = 0.06759382
+ground_bottom_color = Color(0.15838766, 0.13202736, 0.10236665, 1)
+ground_horizon_color = Color(0.2864355, 0.29255608, 0.3048095, 1)
+ground_curve = 0.033635892
+
+[sub_resource type="Sky" id="Sky_272bh"]
+sky_material = SubResource("ProceduralSkyMaterial_7mycd")
+
+[sub_resource type="Environment" id="Environment_5vw27"]
+background_mode = 2
+sky = SubResource("Sky_272bh")
 
 [node name="Node3D" type="Node3D"]
 
@@ -94,6 +109,7 @@ transform = Transform3D(-0.6, 4.5856454e-15, 5.2453668e-08, 0, -0.6, 5.2453668e-
 transform = Transform3D(0.70710677, -0.35355338, 0.6123724, 0, 0.8660254, 0.5, -0.70710677, -0.35355338, 0.6123724, 14.432386, 11.946611, 11.698142)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_5vw27")
 
 [node name="CameraPivot" type="Node3D" parent="."]
 script = ExtResource("5_lquwl")
