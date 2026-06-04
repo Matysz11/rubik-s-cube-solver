@@ -233,3 +233,4 @@ func bot_move(move):
 		rotate_up()
 	if site == "d":
 		rotate_down()
+	
