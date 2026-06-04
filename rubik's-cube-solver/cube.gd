@@ -217,3 +217,4 @@ func _rotate_layer(axis_value: Vector3i, axis: Vector3, angle: float):
 		c.position = Vector3(c.grid_pos) * cube_size
 	pivot.queue_free()
 	is_rotating = false
+	
