@@ -3,17 +3,19 @@
 [ext_resource type="Script" uid="uid://d4byqbf5m6oqu" path="res://scripts/center.gd" id="1_3f4wk"]
 [ext_resource type="Material" uid="uid://dlnql6sng0dla" path="res://assets/material.material" id="1_hwhyk"]
 
-[sub_resource type="BoxMesh" id="BoxMesh_vx3r0"]
-
 [sub_resource type="BoxMesh" id="BoxMesh_u2gga"]
 
-[node name="MeshInstance3D" type="MeshInstance3D"]
+[sub_resource type="BoxMesh" id="BoxMesh_6xlf5"]
+
+[node name="Node3D" type="Node3D"]
 transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0, 0, 0)
-material_override = ExtResource("1_hwhyk")
-mesh = SubResource("BoxMesh_vx3r0")
 script = ExtResource("1_3f4wk")
 
 [node name="sticker1" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.85, 0, 0, 0, 0.049999993, 0, 0, 0, 0.85, 0, 0.5249999, 0)
 mesh = SubResource("BoxMesh_u2gga")
 skeleton = NodePath("../..")
+
+[node name="body" type="MeshInstance3D" parent="."]
+material_override = ExtResource("1_hwhyk")
+mesh = SubResource("BoxMesh_6xlf5")

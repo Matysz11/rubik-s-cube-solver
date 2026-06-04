@@ -1,4 +1,4 @@
-extends MeshInstance3D
+extends Node3D
 
 var grid_pos: Vector3i
 var rot_degrees: Vector3
@@ -7,6 +7,7 @@ var colors := {}
 @onready var sticker1 = $sticker1
 @onready var sticker2 = $sticker2
 @onready var sticker3 = $sticker3
+@onready var body = $body
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -40,3 +41,18 @@ func apply_color(c1: Color, c2: Color, c3: Color):
 		mat3 = StandardMaterial3D.new()
 		sticker3.set_surface_override_material(0, mat3)
 	mat3.albedo_color = c3
+
+func toggle_transparency():
+	body.visible = !body.visible
+	var alpha = 0.4 if !body.visible else 1.0
+	_set_alpha(sticker1, alpha)
+	_set_alpha(sticker2, alpha)
+	_set_alpha(sticker3, alpha)
+
+func _set_alpha(mesh: MeshInstance3D, alpha: float):
+	var mat := mesh.get_surface_override_material(0)
+	if mat == null:
+		mat = StandardMaterial3D.new()
+		mesh.set_surface_override_material(0, mat)
+	mat.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
+	mat.albedo_color.a = alpha

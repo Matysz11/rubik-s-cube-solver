@@ -137,6 +137,9 @@ func _input(event):
 		rotate_up()
 	if event.is_action_pressed("down"):
 		rotate_down()
+	if event.is_action_pressed("transparency"):
+		for cube in cubies:
+			cube.toggle_transparency()
 
 func rotate_front():
 	if prim_move:
@@ -233,4 +236,3 @@ func bot_move(move):
 		rotate_up()
 	if site == "d":
 		rotate_down()
-	
