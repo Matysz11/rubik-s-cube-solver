@@ -1,0 +1,87 @@
+[gd_scene load_steps=4 format=3 uid="uid://cvy2m8x2tacom"]
+
+[ext_resource type="PackedScene" uid="uid://dhckwokwkdoyl" path="res://center.tscn" id="1_h2yge"]
+[ext_resource type="PackedScene" uid="uid://db4qf8wkxuknl" path="res://corner.tscn" id="1_ig7tw"]
+[ext_resource type="PackedScene" uid="uid://dyu60ggqte6un" path="res://edge.tscn" id="2_1bvp3"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="Cube" type="Node3D" parent="."]
+
+[node name="center1" parent="Cube" instance=ExtResource("1_h2yge")]
+transform = Transform3D(-2.6226834e-08, 0.6, 0, -0.6, -2.6226834e-08, 0, 0, 0, 0.6, 0.6, 0, 0)
+
+[node name="center2" parent="Cube" instance=ExtResource("1_h2yge")]
+transform = Transform3D(-2.6226834e-08, -0.6, 0, 0.6, -2.6226834e-08, 0, 0, 0, 0.6, -0.6, 0, 0)
+
+[node name="center3" parent="Cube" instance=ExtResource("1_h2yge")]
+transform = Transform3D(0.6, 0, 0, 0, -2.6226834e-08, -0.6, 0, 0.6, -2.6226834e-08, 0, 0, 0.6)
+
+[node name="center4" parent="Cube" instance=ExtResource("1_h2yge")]
+transform = Transform3D(0.6, 0, 0, 0, -2.6226834e-08, 0.6, 0, -0.6, -2.6226834e-08, 0.003, 0, -0.6)
+
+[node name="center5" parent="Cube" instance=ExtResource("1_h2yge")]
+transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0, 0.6, 0)
+
+[node name="center6" parent="Cube" instance=ExtResource("1_h2yge")]
+transform = Transform3D(0.6, 0, 0, 0, -0.6, 5.2453668e-08, 0, -5.2453668e-08, -0.6, 0, -0.6, 0)
+
+[node name="edge1" parent="Cube" instance=ExtResource("2_1bvp3")]
+transform = Transform3D(0.6, 0, 0, 0, -2.6226834e-08, -0.6, 0, 0.6, -2.6226834e-08, 0.6, 0, 0.6)
+
+[node name="edge2" parent="Cube" instance=ExtResource("2_1bvp3")]
+transform = Transform3D(0.6, 0, 0, 0, -2.6226834e-08, 0.6, 0, -0.6, -2.6226834e-08, 0.6, 0, -0.6)
+
+[node name="edge3" parent="Cube" instance=ExtResource("2_1bvp3")]
+transform = Transform3D(-0.6, 5.2453668e-08, 2.2928227e-15, 0, -2.6226834e-08, 0.6, 5.2453668e-08, 0.6, 2.6226834e-08, -0.6, 0, 0.6)
+
+[node name="edge4" parent="Cube" instance=ExtResource("2_1bvp3")]
+transform = Transform3D(-0.6, -5.2453668e-08, 2.2928227e-15, 0, -2.6226834e-08, -0.6, 5.2453668e-08, -0.6, 2.6226834e-08, -0.6, 0, -0.6)
+
+[node name="edge5" parent="Cube" instance=ExtResource("2_1bvp3")]
+transform = Transform3D(-2.6226834e-08, 0, -0.6, 0, 0.6, 0, 0.6, 0, -2.6226834e-08, 0, 0.6, 0.6)
+
+[node name="edge6" parent="Cube" instance=ExtResource("2_1bvp3")]
+transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0.6, 0.6, 0)
+
+[node name="edge7" parent="Cube" instance=ExtResource("2_1bvp3")]
+transform = Transform3D(-0.6, 0, -5.2453668e-08, 0, 0.6, 0, 5.2453668e-08, 0, -0.6, -0.6, 0.6, 0)
+
+[node name="edge8" parent="Cube" instance=ExtResource("2_1bvp3")]
+transform = Transform3D(-2.6226834e-08, 0, 0.6, 0, 0.6, 0, -0.6, 0, -2.6226834e-08, 0, 0.6, -0.6)
+
+[node name="edge9" parent="Cube" instance=ExtResource("2_1bvp3")]
+transform = Transform3D(-2.6226834e-08, 5.2453668e-08, 0.6, 0, -0.6, 5.2453668e-08, 0.6, 2.2928227e-15, 2.6226834e-08, 0, -0.6, 0.6)
+
+[node name="edge10" parent="Cube" instance=ExtResource("2_1bvp3")]
+transform = Transform3D(0.6, 0, 0, 0, -0.6, -5.2453668e-08, 0, 5.2453668e-08, -0.6, 0.6, -0.6, 0)
+
+[node name="edge11" parent="Cube" instance=ExtResource("2_1bvp3")]
+transform = Transform3D(-0.6, 4.5856454e-15, 5.2453668e-08, 0, -0.6, 5.2453668e-08, 5.2453668e-08, 5.2453668e-08, 0.6, -0.6, -0.6, 0)
+
+[node name="edge12" parent="Cube" instance=ExtResource("2_1bvp3")]
+transform = Transform3D(-2.6226834e-08, -5.2453668e-08, -0.6, 0, -0.6, 5.2453668e-08, -0.6, 2.2928227e-15, 2.6226834e-08, 0, -0.6, -0.6)
+
+[node name="corner1" parent="Cube" instance=ExtResource("1_ig7tw")]
+transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0.6, 0.6, 0.6)
+
+[node name="corner2" parent="Cube" instance=ExtResource("1_ig7tw")]
+transform = Transform3D(-2.6226834e-08, 0, 0.6, 0, 0.6, 0, -0.6, 0, -2.6226834e-08, 0.6, 0.6, -0.6)
+
+[node name="corner3" parent="Cube" instance=ExtResource("1_ig7tw")]
+transform = Transform3D(-0.6, 0, -5.2453668e-08, 0, 0.6, 0, 5.2453668e-08, 0, -0.6, -0.6, 0.6, -0.6)
+
+[node name="corner4" parent="Cube" instance=ExtResource("1_ig7tw")]
+transform = Transform3D(-2.6226834e-08, 0, -0.6, 0, 0.6, 0, 0.6, 0, -2.6226834e-08, -0.6, 0.6, 0.6)
+
+[node name="corner5" parent="Cube" instance=ExtResource("1_ig7tw")]
+transform = Transform3D(-2.6226834e-08, 5.2453668e-08, 0.6, 0, -0.6, 5.2453668e-08, 0.6, 2.2928227e-15, 2.6226834e-08, 0.6, -0.6, 0.6)
+
+[node name="corner6" parent="Cube" instance=ExtResource("1_ig7tw")]
+transform = Transform3D(0.6, 0, 0, 0, -0.6, 5.2453668e-08, 0, -5.2453668e-08, -0.6, 0.6, -0.6, -0.6)
+
+[node name="corner7" parent="Cube" instance=ExtResource("1_ig7tw")]
+transform = Transform3D(-2.6226834e-08, -5.2453668e-08, -0.6, 0, -0.6, 5.2453668e-08, -0.6, 2.2928227e-15, 2.6226834e-08, -0.6, -0.6, -0.6)
+
+[node name="corner8" parent="Cube" instance=ExtResource("1_ig7tw")]
+transform = Transform3D(-0.6, 4.5856454e-15, 5.2453668e-08, 0, -0.6, 5.2453668e-08, 5.2453668e-08, 5.2453668e-08, 0.6, -0.6, -0.6, 0.6)
