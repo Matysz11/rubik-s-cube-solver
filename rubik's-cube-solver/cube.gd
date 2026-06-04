@@ -60,6 +60,10 @@ var solved_state = [
 	{ "name": "corner8", "grid_pos": Vector3i(-1, -1, 1), "rotation": Vector3(0, 0, 180) }
 ]
 
+var start_colors = [
+	Color.RED, Color.ORANGE, Color.BLUE, Color.GREEN, Color.WHITE, Color.YELLOW
+]
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	cubies = [
@@ -70,10 +74,42 @@ func _ready() -> void:
 		corner5, corner6, corner7, corner8
 	]
 	
-	for i in cubies.size():
+	for i in range(cubies.size()):
 		cubies[i].grid_pos = solved_state[i]["grid_pos"]
 		cubies[i].rot_degrees = solved_state[i]["rotation"]
 		cubies[i].apply_state()
+	
+	center1.apply_color(Color.RED)
+	center2.apply_color(Color.ORANGE)
+	center3.apply_color(Color.BLUE)
+	center4.apply_color(Color.GREEN)
+	center5.apply_color(Color.YELLOW)
+	center6.apply_color(Color.WHITE)
+	
+	edge1.apply_color(Color.BLUE, Color.RED)
+	edge2.apply_color(Color.GREEN, Color.RED)
+	edge3.apply_color(Color.BLUE, Color.ORANGE)
+	edge4.apply_color(Color.GREEN, Color.ORANGE)
+
+	edge5.apply_color(Color.YELLOW, Color.BLUE)
+	edge6.apply_color(Color.YELLOW, Color.RED)
+	edge7.apply_color(Color.YELLOW, Color.ORANGE)
+	edge8.apply_color(Color.YELLOW, Color.GREEN)
+
+	edge9.apply_color(Color.WHITE, Color.BLUE)
+	edge10.apply_color(Color.WHITE, Color.RED)
+	edge11.apply_color(Color.WHITE, Color.ORANGE)
+	edge12.apply_color(Color.WHITE, Color.GREEN)
+	
+	corner1.apply_color(Color.YELLOW, Color.RED, Color.BLUE)
+	corner2.apply_color(Color.YELLOW, Color.GREEN, Color.RED)
+	corner3.apply_color(Color.YELLOW, Color.ORANGE, Color.GREEN)
+	corner4.apply_color(Color.YELLOW, Color.BLUE, Color.ORANGE)
+
+	corner5.apply_color(Color.WHITE, Color.BLUE, Color.RED)
+	corner6.apply_color(Color.WHITE, Color.RED, Color.GREEN)
+	corner7.apply_color(Color.WHITE, Color.GREEN, Color.ORANGE)
+	corner8.apply_color(Color.WHITE, Color.ORANGE, Color.BLUE)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

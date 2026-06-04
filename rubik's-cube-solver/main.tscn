@@ -1,9 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://cvy2m8x2tacom"]
+[gd_scene load_steps=7 format=3 uid="uid://cvy2m8x2tacom"]
 
 [ext_resource type="Script" uid="uid://d3qcgpjr2n1fd" path="res://cube.gd" id="1_1bvp3"]
 [ext_resource type="PackedScene" uid="uid://dhckwokwkdoyl" path="res://center.tscn" id="1_h2yge"]
 [ext_resource type="PackedScene" uid="uid://db4qf8wkxuknl" path="res://corner.tscn" id="1_ig7tw"]
 [ext_resource type="PackedScene" uid="uid://dyu60ggqte6un" path="res://edge.tscn" id="2_1bvp3"]
+[ext_resource type="Script" uid="uid://bdmnvcm2egbid" path="res://camera_pivot.gd" id="5_lquwl"]
+[ext_resource type="Script" uid="uid://dhgm5ca6yhk1y" path="res://camera_3d.gd" id="6_7mycd"]
 
 [node name="Node3D" type="Node3D"]
 
@@ -88,10 +90,14 @@ transform = Transform3D(-2.6226834e-08, -5.2453668e-08, -0.6, 0, -0.6, 5.2453668
 [node name="corner8" parent="Cube" instance=ExtResource("1_ig7tw")]
 transform = Transform3D(-0.6, 4.5856454e-15, 5.2453668e-08, 0, -0.6, 5.2453668e-08, 5.2453668e-08, 5.2453668e-08, 0.6, -0.6, -0.6, 0.6)
 
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(0.70710677, -0.35355338, 0.6123724, 0, 0.8660254, 0.5, -0.70710677, -0.35355338, 0.6123724, 2, 1.5, 2)
-
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.70710677, -0.35355338, 0.6123724, 0, 0.8660254, 0.5, -0.70710677, -0.35355338, 0.6123724, 14.432386, 11.946611, 11.698142)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+
+[node name="CameraPivot" type="Node3D" parent="."]
+script = ExtResource("5_lquwl")
+
+[node name="Camera3D" type="Camera3D" parent="CameraPivot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5)
+script = ExtResource("6_7mycd")
