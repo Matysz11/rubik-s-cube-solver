@@ -2,6 +2,8 @@ extends Node3D
 
 var prim_move = false
 var is_rotating := false
+var human_move = null
+var speed = null
 
 @onready var center1 = $center1
 @onready var center2 = $center2
@@ -126,16 +128,22 @@ func _input(event):
 		prim_move = false
 		return
 	if event.is_action_pressed("front"):
+		human_move = true
 		rotate_front()
 	if event.is_action_pressed("behind"):
+		human_move = true
 		rotate_back()
 	if event.is_action_pressed("left"):
+		human_move = true
 		rotate_left()
 	if event.is_action_pressed("right"):
+		human_move = true
 		rotate_right()
 	if event.is_action_pressed("up"):
+		human_move = true
 		rotate_up()
 	if event.is_action_pressed("down"):
+		human_move = true
 		rotate_down()
 	if event.is_action_pressed("transparency"):
 		for cube in cubies:
@@ -183,6 +191,10 @@ func _rotate_layer(axis_value: Vector3i, axis: Vector3, angle: float):
 	if is_rotating:
 		return
 	is_rotating = true
+	if human_move:
+		speed = 0.15
+	else:
+		speed = 0
 	var pivot = Node3D.new()
 	add_child(pivot)
 	var cube_size = 0.6
@@ -205,7 +217,7 @@ func _rotate_layer(axis_value: Vector3i, axis: Vector3, angle: float):
 		pivot,
 		"rotation_degrees",
 		pivot.rotation_degrees + axis * angle,
-		0.15
+		speed
 	)
 	await tween.finished
 	for c in affected:
@@ -225,14 +237,20 @@ func bot_move(move):
 	var site = move[0]
 	prim_move = move[1]
 	if site == "f":
+		human_move = false
 		rotate_front()
 	if site == "b":
+		human_move = false
 		rotate_back()
 	if site == "l":
+		human_move = false
 		rotate_left()
 	if site == "r":
+		human_move = false
 		rotate_right()
 	if site == "u":
+		human_move = false
 		rotate_up()
 	if site == "d":
+		human_move = false
 		rotate_down()

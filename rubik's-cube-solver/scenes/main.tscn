@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://cvy2m8x2tacom"]
+[gd_scene load_steps=10 format=3 uid="uid://cvy2m8x2tacom"]
 
 [ext_resource type="Script" uid="uid://byftm7pue1ltg" path="res://scenes/main.gd" id="1_tbgi4"]
 [ext_resource type="PackedScene" uid="uid://b0iljx0mf3a78" path="res://scenes/cube.tscn" id="2_tbgi4"]
 [ext_resource type="Script" uid="uid://bdmnvcm2egbid" path="res://scripts/camera_pivot.gd" id="3_tefeu"]
 [ext_resource type="Script" uid="uid://dhgm5ca6yhk1y" path="res://scripts/camera_3d.gd" id="4_o6xl0"]
 [ext_resource type="Script" uid="uid://cy2tfk0x82wda" path="res://scripts/randomizer.gd" id="5_tefeu"]
+[ext_resource type="Script" uid="uid://47mtjvx2hykb" path="res://scenes/lbl.gd" id="6_tefeu"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_7mycd"]
 sky_top_color = Color(0.16078432, 0.4, 0.65882355, 1)
@@ -43,3 +44,6 @@ script = ExtResource("4_o6xl0")
 
 [node name="Randomizer" type="Node3D" parent="Bots"]
 script = ExtResource("5_tefeu")
+
+[node name="LBL" type="Node3D" parent="Bots"]
+script = ExtResource("6_tefeu")
