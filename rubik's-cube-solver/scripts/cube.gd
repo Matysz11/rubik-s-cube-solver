@@ -254,3 +254,13 @@ func bot_move(move):
 	if site == "d":
 		human_move = false
 		rotate_down()
+
+func get_state():
+	var state = []
+	for c in cubies:
+		state.append({
+			"name": c.name,
+			"pos": c.grid_pos,
+			"rot": c.rot_degrees
+		})
+	return state
