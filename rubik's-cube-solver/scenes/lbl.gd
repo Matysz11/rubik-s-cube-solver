@@ -29,8 +29,10 @@ var current_state = []
 #cube.bot_move(move)
 
 
+func _process(delta):
 
-
+	if Input.is_key_pressed(KEY_P):
+		print(cube.is_cross_done())
 
 func _input(event):
 	if event.is_action_pressed("lbl") and !running:
@@ -51,37 +53,26 @@ func step():
 	match phase:
 		Phase.CROSS:
 			print("cross")
-			if is_cross_done():
+			if cube.is_cross_done():
 				phase = Phase.FIRST_LAYER
 
 		Phase.FIRST_LAYER:
 			print("fl")
-			if is_first_layer_done():
+			if cube.is_first_layer_done():
 				phase = Phase.SECOND_LAYER
 
 		Phase.SECOND_LAYER:
 			print("sl")
-			if is_second_layer_done():
+			if cube.is_second_layer_done():
 				phase = Phase.OLL
 
 		Phase.OLL:
 			print("oll")
-			if is_oll_done():
+			if cube.is_oll_done():
 				phase = Phase.PLL
 
 		Phase.PLL:
 			print("pll")
-			if is_pll_done():
+			if cube.is_pll_done():
 				is_done = true
 				print("skończone")
-
-func is_cross_done():
-	return true
-func is_first_layer_done():
-	return true
-func is_second_layer_done():
-	return true
-func is_oll_done():
-	return true
-func is_pll_done():
-	return true

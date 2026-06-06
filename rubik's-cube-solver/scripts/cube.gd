@@ -81,7 +81,7 @@ func _ready() -> void:
 	
 	for i in range(cubies.size()):
 		cubies[i].grid_pos = solved_state[i]["grid_pos"]
-		cubies[i].rot_degrees = solved_state[i]["rotation"]
+		cubies[i].rotation_degrees = solved_state[i]["rotation"]
 		cubies[i].apply_state()
 	
 	center1.apply_color(Color.RED)
@@ -232,7 +232,6 @@ func _rotate_layer(axis_value: Vector3i, axis: Vector3, angle: float):
 			round(c.global_position.z / cube_size)
 		)
 		c.position = Vector3(c.grid_pos) * cube_size
-		c.rot_degrees = round(c.rotation_degrees)
 	pivot.queue_free()
 	is_rotating = false
 	
@@ -264,6 +263,104 @@ func get_state():
 		state.append({
 			"name": c.name,
 			"pos": c.grid_pos,
-			"rot": c.rot_degrees
+			"basis": c.global_transform.basis
 		})
 	return state
+
+func get_piece(name: String):
+	for c in cubies:
+		if c.name == name:
+			return c
+	return null
+
+
+func is_piece_solved(name: String) -> bool:
+	var piece = get_piece(name)
+
+	for data in solved_state:
+		if data["name"] == name:
+
+			if piece.grid_pos != data["grid_pos"]:
+				return false
+			
+			if piece.rot_degrees != data["rotation"]:
+				return false
+
+			return true
+
+	return false
+
+func normalize_angle(a: float) -> float:
+	a = fmod(a, 360)
+
+	if a > 180:
+		a -= 360
+
+	if a <= -180:
+		a += 360
+
+	return a
+
+func normalize_rot(v: Vector3) -> Vector3:
+	return Vector3(
+		normalize_angle(v.x),
+		normalize_angle(v.y),
+		normalize_angle(v.z)
+	)
+
+func is_cross_done():
+	var edges = ["edge9","edge10","edge11","edge12"]
+	for e in edges:
+		var piece = get_piece(e)
+		if piece.grid_pos.y != -1:
+			return false
+		#if piece.get_face_colors()["D"] != Color.WHITE:
+			#return false
+		if not _edge_matches_center(piece, "D"):
+			return false
+
+	return true
+func is_first_layer_done():
+	#if !is_cross_done():
+		#false
+	#var corners = ["corner5","corner6","corner7","corner8"]
+	#for c in corners:
+		#var piece = get_piece(c)
+		#if piece.grid_pos.y != -1:
+			#return false
+		#var colors_on_faces = piece.get_face_colors()
+		#if colors_on_faces["D"] != Color.WHITE:
+			#false
+	#return true
+	pass
+func is_second_layer_done():
+	return true
+func is_oll_done():
+	return true
+func is_pll_done():
+	return true
+
+func get_face_color(piece, dir: String):
+	return piece.get_face_colors()[dir]
+
+func _edge_matches_center(edge, face: String) -> bool:
+	var edge_colors = edge.get_face_colors()
+
+	# znajdź kolor na danej stronie edge
+	var edge_color = edge_colors[face]
+
+	# znajdź center tej ściany
+	var center = _get_center_for_face(face)
+	var center_color = center.color
+	#print(edge_color)
+	#print(center_color)
+	return edge_color == center_color
+	
+func _get_center_for_face(face: String):
+	match face:
+		"U": return center5
+		"D": return center6
+		"F": return center3
+		"B": return center4
+		"R": return center1
+		"L": return center2
