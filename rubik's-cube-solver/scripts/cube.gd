@@ -146,8 +146,10 @@ func _input(event):
 		human_move = true
 		rotate_down()
 	if event.is_action_pressed("transparency"):
-		for cube in cubies:
-			cube.toggle_transparency()
+		print(solved_state)
+		print(get_state())
+		#for cube in cubies:
+		#	cube.toggle_transparency()
 
 func rotate_front():
 	if prim_move:
@@ -230,6 +232,7 @@ func _rotate_layer(axis_value: Vector3i, axis: Vector3, angle: float):
 			round(c.global_position.z / cube_size)
 		)
 		c.position = Vector3(c.grid_pos) * cube_size
+		c.rot_degrees = round(c.rotation_degrees)
 	pivot.queue_free()
 	is_rotating = false
 	
